@@ -1,20 +1,16 @@
 ---
 layout: post
 title:  "CS229 学习笔记"
+mathjax: true
 ---
-
-# 吴恩达机器学习 学习笔记
-https://www.bilibili.com/video/av50747658
 
 
 ## 用于公式引用
 高斯分布概率密度函数：
 $$
-\begin{aligned}
 P(x)=\frac{1}{\sqrt{2π}\sigma}exp({-\frac{(x-\mu)^2}{2\sigma^2}})\\
 p(z)=\frac{1}{(2π)^{\frac{n}{2}}|\Sigma|^\frac{1}{2}}exp(-\frac{1}{2}
 (x-\mu)^T\Sigma^{-1}(x-\mu))
-\end{aligned}
 $$
 
 伯努利分布概率密度函数：
@@ -29,13 +25,6 @@ g(z)=\frac{1}{1+e^{-z}}
 $$
 
 
-
-
-
-## P2
-+ 什么是机器学习：程序在task T上的performance P随着experience E而增加
-
-
 # 斯坦福cs229 机器学习课程（吴恩达）
 https://www.bilibili.com/video/av79827258?from=search&seid=13988545588995524424
 ## p1
@@ -46,7 +35,7 @@ cs229a:更少数学，更偏应用
 ## p2
 note:http://cs229.stanford.edu/notes2019fall/cs229-notes1.pdf
 ### linear regression
-线性回归的hypothesis是模型是线性的：h(x)=h_0+h_1x 
+线性回归的hypothesis是模型是线性的：$h(x)=h_0+h_1x$ 
 
 损失函数 
 $$
@@ -130,8 +119,7 @@ y^{(m)}
 
 展开后
 $$
-J(\theta)=\frac{1}{2}(X^T\theta^T-y^T)(X\theta - y)
-
+J(\theta)=\frac{1}{2}(X^T\theta^T-y^T)(X\theta - y)\\
 =\frac{1}{2}(X^T\theta^TX\theta-X^T\theta^Ty-y^TX\theta+y^Ty)
 $$
 对$\theta$求导（详见http://cs229.stanford.edu/notes2019fall/cs229-notes1.pdf  中p9~10）得
@@ -194,8 +182,7 @@ X(\theta) = proj(y;X)
 $$
 根据上一章的向量投影矩阵公式
 $$
-X\cdot\theta = X(X^TX)^{-1}X^T\cdot y
-
+X\cdot\theta = X(X^TX)^{-1}X^T\cdot y\\
 \theta = (X^TX)^{-1}X^T\cdot y
 $$
 同p2中normal equation 解一致。
@@ -240,8 +227,7 @@ outline：复习线性回归、locally weighted linear regression、 probabilist
 损失函数：
 
 $$
-J(\theta) = \sum_{i=1}^{m}\omega^{(i)}(y^{(i)}-\theta^Tx^{(i)})^2
-
+J(\theta) = \sum_{i=1}^{m}\omega^{(i)}(y^{(i)}-\theta^Tx^{(i)})^2\\
 其中\omega^{(i)}=exp(-\frac{(x^{(i)}-x)^2}{2\tau^2}),\tau为bandwidth，定义靠近的带宽
 $$
 
@@ -258,10 +244,8 @@ $P(y^{(i)}|x^{(i)};\theta)$中的分号(semi colon)被读作parameterized by，�
 那么$(y^{(i)}|x^{(i)};\theta)$~$N(\theta^Tx^{(i)},\sigma^2)$
 likelihood of $\theta$(似然函数)$L(\theta)$
 $$
-L(\theta)=P(Y|X;\theta)
-
-=\prod_{i=1}^mP(y^{(i)}|x^{(i)};\theta)
-
+L(\theta)=P(Y|X;\theta)\\
+=\prod_{i=1}^mP(y^{(i)}|x^{(i)};\theta)\\
 =\prod_{i=1}^m\frac{1}{\sqrt{2π}\sigma}exp({-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2}})
 $$
 
@@ -270,10 +254,8 @@ $$
 为了便于计算，对似然函数取对数
 
 $$
-l(\theta) = logL(\theta)
-
-=log\prod_{i=1}^m\frac{1}{\sqrt{2π}\sigma}exp({-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2}})
-
+l(\theta) = logL(\theta)\\
+=log\prod_{i=1}^m\frac{1}{\sqrt{2π}\sigma}exp({-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2}})\\
 =m\cdot log\frac{1}{\sqrt{2π}\sigma}+\sum_{i=1}^m{-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2}}
 $$
 
@@ -303,18 +285,14 @@ $$
 同样的，使用极大似然估计
 
 $$
-L(\theta)=P(Y|X;\theta)
-
-=\prod_{i=1}^mP(y^{(i)}|x^{(i)};\theta)
-
+L(\theta)=P(Y|X;\theta)\\
+=\prod_{i=1}^mP(y^{(i)}|x^{(i)};\theta)\\
 =\prod_{i=1}^mh_\theta(x)^y\cdot(1-h_\theta(x))^{(1-y)}
 $$
 取对数
 $$
-l(\theta) = logL(\theta)
-
-=log\prod_{i=1}^mh_\theta(x)^y\cdot(1-h_\theta(x))^{(1-y)}
-
+l(\theta) = logL(\theta)\\
+=log\prod_{i=1}^mh_\theta(x)^y\cdot(1-h_\theta(x))^{(1-y)}\\
 =\sum_{i=1}^my^{(i)}\cdot log(h_\theta(x^{(i)}))+(1-y^{(i)})\cdot log(1-h_\theta(x^{(i)}))
 $$
 现在我们需要选择$\theta$使$l(\theta)$最大，我们可以使用p2中的batch gradient descent
@@ -386,8 +364,7 @@ g(z)=
 \begin{cases}
 0&  z\geq 0\\
 1& z<0
-\end{cases}
-
+\end{cases}\\
 h_\theta(x)=g(\theta^Tx)
 $$
 它的迭代更新公式同样为
@@ -418,10 +395,8 @@ $$
 我们的目标是将它转化为指数族的表示方法
 
 $$
-P(y,\phi)=\phi^y (1-\phi)^{(1-y)}
-
-=exp(log(\phi^y (1-\phi)^{(1-y)}))
-
+P(y,\phi)=\phi^y (1-\phi)^{(1-y)}\\
+=exp(log(\phi^y (1-\phi)^{(1-y)}))\\
 =exp[log(\frac{\phi}{1-\phi})y+log(1-\phi)]
 $$
 它满足指数族的一般表示$p(y;\eta)= b(y)exp(\eta^T T(y)-\alpha(\eta))$
@@ -476,8 +451,7 @@ canonical link function：$\eta=g^{-1}(E[y;\eta])$
 
 逻辑回归是二元分类问题，符合伯努利分布，伯努利分布的期望为$\phi$，上一章中推导出$\alpha(\eta)=-log(1-\phi)=-log(1-\frac{1}{1+e^{-\eta}})=log(1+e^\eta)$，根据3个前提，可以得出
 $$
-h_\theta (x)=E[y|x;\theta]=E(y;\eta)=\frac{\delta}{\delta\eta}\alpha(\eta)
-
+h_\theta (x)=E[y|x;\theta]=E(y;\eta)=\frac{\delta}{\delta\eta}\alpha(\eta)\\
 =\frac{1}{1+e^{-\eta}}=\frac{1}{1+e^{-\theta^Tx}}
 $$
 与逻辑回归中的hypothesis函数一致，这是逻辑回归的激活函数使用sigmoid函数（logistics函数）的原因。
@@ -502,10 +476,8 @@ $$
 由于真实的数据y的分布是确定的，也就是one-hot，因此
 
 $$
-CrossEntropy(y,\hat y)=-\sum_{y\in\{all\_class\}}p(y)log(\hat p(\hat y))
-
-=-log(\hat p(\hat{y_{true}}))
-
+CrossEntropy(y,\hat y)=-\sum_{y\in\{all\_class\}}p(y)log(\hat p(\hat y))\\
+=-log(\hat p(\hat{y_{true}}))\\
 =-log(\frac{exp(\theta_{true}^T x)}{\sum exp(\theta_{class}^T x) })
 $$
 可以参考其他人的学习笔记：https://blog.csdn.net/xierhacker/article/details/53364408
@@ -552,8 +524,7 @@ $$
 因为p(x|y)~Gaussian，
 $$
 p(x|y=0)=\frac{1}{(2π)^{\frac{n}{2}}|\Sigma|^\frac{1}{2}}exp(-\frac{1}{2}
-(x-\mu_0)^T\Sigma^{-1}(x-\mu_0))\\
-
+(x-\mu_0)^T\Sigma^{-1}(x-\mu_0))\\\\
 p(x|y=1)=\frac{1}{(2π)^{\frac{n}{2}}|\Sigma|^\frac{1}{2}}exp(-\frac{1}{2}
 (x-\mu_1)^T\Sigma^{-1}(x-\mu_1))
 $$
@@ -561,8 +532,7 @@ $$
 
 当使用训练集$\{(x^{(i)},y^{(i)})\}_{i=1}^m$训练模型时，对这些参数作极大似然估计(将它们的联合似然函数最大化)
 $$
-L(\phi,\mu_0,\mu_1,\Sigma)=\prod_{i=1}^mp(x^{(i)},y^{(i)};\phi,\mu_0,\mu_1,\Sigma)
-
+L(\phi,\mu_0,\mu_1,\Sigma)=\prod_{i=1}^mp(x^{(i)},y^{(i)};\phi,\mu_0,\mu_1,\Sigma)\\
 =\prod_{i=1}^mp(x^{(i)}|y^{(i)};...)p(y^{(i)};...)
 $$
 
@@ -571,14 +541,10 @@ $$
 我们使用极大似然估计（MLE）。为了便于计算，要将$logL(\phi,\mu_0,\mu_1,\Sigma)$最大化，令它关于四个参数导数为零，得到每个参数结果如下。具体推导详见：https://blog.csdn.net/z_feng12489/article/details/81086183
 
 $$
-\phi = \frac{\sum_{i=1}^m y{(i)}}{m} = \frac{\sum_{i=1}^m I(y^{(i)}=1)}{m} 
-
-\mu_0=\frac{\sum_{i=1}^m I(y^{(i)}=0)x^{(i)}}{\sum_{i=1}^m I(y^{(i)}=0)}
-
-\mu_1=\frac{\sum_{i=1}^m I(y^{(i)}=1)x^{(i)}}{\sum_{i=1}^m I(y^{(i)}=1)}
-
-\Sigma=\frac{1}{m}\sum_{i=1}^m(x^{(i)}-\mu_{y^{(i)}})(x^{(i)}-\mu_{y^{(i)}})^T
-
+\phi = \frac{\sum_{i=1}^m y{(i)}}{m} = \frac{\sum_{i=1}^m I(y^{(i)}=1)}{m} \\
+\mu_0=\frac{\sum_{i=1}^m I(y^{(i)}=0)x^{(i)}}{\sum_{i=1}^m I(y^{(i)}=0)}\\
+\mu_1=\frac{\sum_{i=1}^m I(y^{(i)}=1)x^{(i)}}{\sum_{i=1}^m I(y^{(i)}=1)}\\
+\Sigma=\frac{1}{m}\sum_{i=1}^m(x^{(i)}-\mu_{y^{(i)}})(x^{(i)}-\mu_{y^{(i)}})^T\\
 $$
 其中I是指示函数，I{true}=1,I{flase}=0
 
@@ -597,7 +563,6 @@ x|y=0 \sim N(\mu_0,\Sigma)\\
 x|y=1 \sim N(\mu_1,\Sigma) & => p(y=1|x)=\frac{1}{1+e^{-\Theta^TX}}\\
 y \sim Bernoulli(\phi)
 \end{cases}
-
 $$
 
 可证明，当x∣y=0
@@ -629,16 +594,13 @@ $$
 
 我们假设x|y之间条件独立(conditionally independent)也叫Naive Bayes Assumption 强独立假设,即
 $$
-p(x_1,...,x_{10000}|y)=p(x_1|y)\times p(x_2|y)\times ... \times p(x_{10000}|y)
-
+p(x_1,...,x_{10000}|y)=p(x_1|y)\times p(x_2|y)\times ... \times p(x_{10000}|y)\\
 =\prod p(x_i|y)
 $$
 参数表示如下：
 $$
-\phi_{j|y=1}=p(x_j=1|y=1)
-
-\phi_{j|y=0}=p(x_j=1|y=0)
-
+\phi_{j|y=1}=p(x_j=1|y=1)\\
+\phi_{j|y=0}=p(x_j=1|y=0)\\
 \phi_y=p(y=1)
 $$
 即当标签为y=1时，第j个词出现在文本中的概率
@@ -653,8 +615,7 @@ https://blog.csdn.net/z_feng12489/article/details/81381572?depth_1-utm_source=di
 
 极大似然估计（MLE）为
 $$
-\phi_y = \frac{\sum_{i=1}^m I\{y^{(i)}=1\}}{m}
-
+\phi_y = \frac{\sum_{i=1}^m I\{y^{(i)}=1\}}{m}\\
 \phi_{j|y=1} = \frac{\sum_{i=1}^m I\{x_j^{(i)}=1,y^{(i)}=1\}}{\sum_{i=1}^m I\{y^{(i)}=1\}}
 $$
 直观理解为：很好理解。。。
@@ -672,8 +633,7 @@ note： http://cs229.stanford.edu/notes2019fall/cs229-notes2.pdf
 
 有一个必须要注意的问题，当新的数据中出现了训练数据中从未出现过的词汇时，将无法判断类别。因为
 $$
-p(y=1|x_{new})=\frac{p(x_{new}|y=1)p(y=1)}{p(x_{new}|y=1)p(y=1)+p(x_{new}|y=0)p(y=0)}
-
+p(y=1|x_{new})=\frac{p(x_{new}|y=1)p(y=1)}{p(x_{new}|y=1)p(y=1)+p(x_{new}|y=0)p(y=0)}\\
 =\frac{0 }{0+0}
 $$
 为了解决这个问题，我们需要拉普拉斯平滑(Laplace smoothing)
@@ -805,14 +765,12 @@ $$
 
 用数学表示为：
 $$
-\max_{\gamma, w, b} \ \gamma
-
+\max_{\gamma, w, b} \ \gamma\\
 s.t.  \ \frac{y^{(i)}(w^Tx^{(i)}+b)}{||w||}\geq \gamma
 $$
 不过由于这个函数不是凸函数，不便于用随机梯度法计算，因此通过简单计算（令$||w||=\frac{1}{\gamma}$）可以将它转化为以下形式（详见note3 p16）
 $$
-\min_{w,b} \frac{1}{2}||w||^2
-
+\min_{w,b} \frac{1}{2}||w||^2\\
 s.t. \ y^{(i)}(w^Tx^{(i)}+b)\geq1
 $$
 它是一个凸函数
@@ -827,8 +785,7 @@ note3：http://cs229.stanford.edu/notes2019fall/cs229-notes3.pdf
 
 前文我们提到最大间距分类器可以表示为
 $$
-\min_{w,b} \frac{1}{2}||w||^2
-
+\min_{w,b} \frac{1}{2}||w||^2\\
 s.t. \ y^{(i)}(w^Tx^{(i)}+b)\geq1
 $$
 其中的$x^{(i)}$可以是任意维数的
@@ -843,35 +800,29 @@ $\min_{w,b} \frac{1}{2}||w||^2$也可以表示为$\min_{w,b} \frac{1}{2}w^Tw$
 
 那么由$w=\sum_{i=1}^m \alpha_iy^{(i)}x^{(i)}$代入最大间距分类器表示公式，得到
 $$
-\min_{w,b} \frac{1}{2}(\sum_{i=1}^m \alpha_iy^{(i)}x^{(i)})^T(\sum_{j=1}^m \alpha_jy^{(j)}x^{(j)})
-
-=\min_{w,b} \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y^{(i)} y^{(j)} (x^{(i)})^T  x^{(j)}
-
+\min_{w,b} \frac{1}{2}(\sum_{i=1}^m \alpha_iy^{(i)}x^{(i)})^T(\sum_{j=1}^m \alpha_jy^{(j)}x^{(j)})\\
+=\min_{w,b} \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y^{(i)} y^{(j)} (x^{(i)})^T  x^{(j)}\\
 =\min_{w,b} \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y^{(i)} y^{(j)}<x^{(i)}, x^{(j)}>
 $$
 其中$<x,z>$表示内积，等同于$x^Tz$,第一个等号是由于$\alpha, y$都是标量。
 
 约束条件$y^{(i)}(w^Tx^{(i)}+b)\geq1$ 变成
 $$
-s.t. \quad y^{(i)}((\sum_{j=1}^m \alpha_jy^{(j)}x^{(j)})^Tx^{(i)}+b)\geq1
-
+s.t. \quad y^{(i)}((\sum_{j=1}^m \alpha_jy^{(j)}x^{(j)})^Tx^{(i)}+b)\geq1\\
 s.t. \quad y^{(i)}(\sum_{j=1}^m \alpha_jy^{(j)}<x^{(j)},x^{(i)}>+b)\geq1
 $$
 由此，optimal margin classifier 最大间距分类器可以表示为
 
 $$
-\min_{w,b} \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y^{(i)} y^{(j)}<x^{(i)}, x^{(j)}>
-
+\min_{w,b} \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y^{(i)} y^{(j)}<x^{(i)}, x^{(j)}>\\
 s.t. \quad y^{(i)}(\sum_{j=1}^m \alpha_jy^{(j)}<x^{(j)},x^{(i)}>+b)\geq1
 $$
 观察式子可以发现，$\alpha, y$使标量，因此关键是计算特征向量的内积$<x^{(i)}, x^{(j)}>$,当向量维数很高时，为了简便计算，我们需要用到核方法Kernel methods
 
 根据凸优化理论，以上优化问题还能被简化为以下形式
 $$
-max \sum_i \alpha_i -\frac12\sum_i \sum_j y^{(i)} y^{(j)}\alpha_i \alpha_j<x^{(i)},x^{(j)}>
-
-s.t.\quad \alpha_i \geq0
-
+max \sum_i \alpha_i -\frac12\sum_i \sum_j y^{(i)} y^{(j)}\alpha_i \alpha_j<x^{(i)},x^{(j)}>\\
+s.t.\quad \alpha_i \geq0\\
 \sum_i y^{(i)} \alpha_i =0
  $$
 这种优化问题被称为"Dual optimization problem"对偶优化问题，推导详见note3 p22和note3 第六章 
@@ -881,10 +832,8 @@ s.t.\quad \alpha_i \geq0
 2. 通过$\alpha_i, b$，进行预测
 
 $$
-h_{w,b}(x)=g(w^Tx+b)
-
-=g((\sum_{i=1}^m \alpha_iy^{(i)}x^{(i)})^Tx+b)
-
+h_{w,b}(x)=g(w^Tx+b)\\
+=g((\sum_{i=1}^m \alpha_iy^{(i)}x^{(i)})^Tx+b)\\
 =g(\sum_{i=1}^m \alpha_iy^{(i)}<x^{(i)},x> +b)
 $$
 
@@ -905,12 +854,9 @@ $\phi (z)= \begin{bmatrix} z_1z_1\\z_1z_2\\z_1z_3\\...\\z_3z_3 \end{bmatrix}$,�
 
 而我们定义$K(x,z)=\phi(x)^T\phi(z)$
 $$
-K(x,z)=\phi(x)^T\phi(z)
-
-=\sum_{i=1}^n \sum_{j=1}^n x_ix_jz_iz_j
-
-=\sum_{i=1}^n x_iz_i \sum_{j=1}^n x_jz_j  
-
+K(x,z)=\phi(x)^T\phi(z)\\
+=\sum_{i=1}^n \sum_{j=1}^n x_ix_jz_iz_j\\
+=\sum_{i=1}^n x_iz_i \sum_{j=1}^n x_jz_j  \\
 =(x^T z)^2
 $$
 计算$\phi(x)^T\phi(z)$的复杂度从原来的$O(n^2)$变成了$O(n)$
@@ -965,12 +911,9 @@ $$
 
 另外还必须满足一个条件，假设$\{x^{(1)},x^{(2)},...,x^{(d)}\}$是d个数据点，那么我们可以定义一个由d个点之间核函数值所组成的kernel matrix $K \in \R^{d\times d}$，其中$K_{ij}=k(x^{(i)},x^{(j)})=\phi(x^{(i)})^T\phi(x^{(j)})$，那么对任意的向量z，它的二次型
 $$
-z^TKz=\sum_i \sum_j z_i K_{ij} z_j
-
-=\sum_i \sum_j z_i \phi(x^{(i)})^T\phi(x^{(j)}) z_j
-
-=\sum_i \sum_j z_i \sum_k \phi(x^{(i)})_k\phi(x^{(j)})_k z_j
-
+z^TKz=\sum_i \sum_j z_i K_{ij} z_j\\
+=\sum_i \sum_j z_i \phi(x^{(i)})^T\phi(x^{(j)}) z_j\\
+=\sum_i \sum_j z_i \sum_k \phi(x^{(i)})_k\phi(x^{(j)})_k z_j\\
 =\sum_k (\sum_i z_i \phi(x^{(i)})_k)^2 \geq0
 $$
 K的二次型大于等于0，说明核函数矩阵K是半正定的。
@@ -987,8 +930,7 @@ K的二次型大于等于0，说明核函数矩阵K是半正定的。
 
 SVM中最大间距分类器可以表示为
 $$
-\min_{w,b} \frac{1}{2}||w||^2
-
+\min_{w,b} \frac{1}{2}||w||^2\\
 s.t. \quad y^{(i)}(w^Tx^{(i)}+b)\geq1
 $$
 
@@ -1002,8 +944,7 @@ s.t. \quad y^{(i)}(w^Tx^{(i)}+b) + \xi_i\geq1
 $$
 而松弛变量$\xi_i$的大小由目标函数来控制，因此Soft Margin SVM的目标函数为
 $$
-\min_{w,b,\xi_i} \frac{1}{2}||w||^2+c\sum_{i=1}^m \xi_i
-
+\min_{w,b,\xi_i} \frac{1}{2}||w||^2+c\sum_{i=1}^m \xi_i\\
 s.t. \quad y^{(i)}(w^Tx^{(i)}+b) \geq1 - \xi_i
 $$
 其中$\xi_i\geq0$,c为控制松弛变量的参数
@@ -1011,10 +952,8 @@ $$
 再同上文一样，根据表示理论（Representer theorem）以及凸优化理论假设参数w可以被表示为x的线性组合$w=\sum_{i=1}^m \alpha_ix^{(i)}$
 将L1 Norm Soft Margin SVM表示为
 $$
-max \sum_i \alpha_i -\frac12\sum_i \sum_j y^{(i)} y^{(j)}\alpha_i \alpha_j<x^{(i)},x^{(j)}>
-
-s.t.\quad 0 \leq \alpha_i \leq c 
-
+max \sum_i \alpha_i -\frac12\sum_i \sum_j y^{(i)} y^{(j)}\alpha_i \alpha_j<x^{(i)},x^{(j)}>\\
+s.t.\quad 0 \leq \alpha_i \leq c \\
 \sum_i y^{(i)} \alpha_i =0
  $$
 与原本的SVM目标函数相比，只是对线性组合的系数$\alpha_i$加了一个不大于c限制条件，c是控制松弛变量的参数，具体如何调参将在下章介绍。
@@ -1090,8 +1029,7 @@ SVM通过核函数，在很高维度下（甚至在无限维）线性分类，�
 
 假设训练集$s=\{x^{(i)},y^{(i)}\}_{i=1}^m$我们想要估计对应于这个数据集的参数$\theta$，根据贝叶斯定理，
 $$
- p(\theta|S)=\frac{p(S|\theta) p(\theta)}{p(S)}
- 
+ p(\theta|S)=\frac{p(S|\theta) p(\theta)}{p(S)}\\
  \theta = \arg \max_\theta p(S|\theta) \ p(\theta)
 $$
 根据广义线性模型
@@ -1238,12 +1176,9 @@ $$
 
 我们可以推出
 $$
-E(\hat h)= Estiamtion\ error + Approximation\ error + Irreducible\ error
-
-=(Est\ Var + Est\ Bias) + Approx\ error + Irreducible\ error
-
-=Est\ Var + (Est\ Bias + Approx\ error) + Irreducible\ error
-
+E(\hat h)= Estiamtion\ error + Approximation\ error + Irreducible\ error\\
+=(Est\ Var + Est\ Bias) + Approx\ error + Irreducible\ error\\
+=Est\ Var + (Est\ Bias + Approx\ error) + Irreducible\ error\\
 = Var + Bias + Irreducible\ error
 $$
 
