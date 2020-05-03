@@ -1,18 +1,19 @@
 ---
 layout: page
-title: About
+title: About Me
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+## Education
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+### Shanghai Shibei Senior High School
+From 2012 to 2015
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+### Shanghai Jiao Tong University
+Major in **Software Engineering**  
+From 2015 to 2019
 
+### Waseda University
+Major in **Machine Learning**  
+From 2019 to 2021 (expected)
 
-[jekyll-organization]: https://github.com/jekyll
